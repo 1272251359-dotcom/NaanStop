@@ -3,6 +3,7 @@
         <div class="post-card">
             <h3>{{ post.title }}</h3>
             <p>{{ post.content }}</p>
+            <small>Posted on {{ post.created_at|date:"M d, Y" }}</small>
         </div>
     {% endfor %}
     {% if posts|length >= 5 %}
@@ -15,4 +16,4 @@
     {% endif %}
 {% else %}
     <p>No more posts 😴</p>
-{% endif %}
+{% endif %}
