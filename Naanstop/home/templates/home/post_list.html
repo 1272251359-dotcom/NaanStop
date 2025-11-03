@@ -1,0 +1,18 @@
+{% if posts %}
+    {% for post in posts %}
+        <div class="post-card">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content }}</p>
+        </div>
+    {% endfor %}
+    {% if posts|length >= 5 %}
+        <div 
+            hx-get="{% url 'load_more_posts' %}?offset={{ posts|length|add:5 }}"
+            hx-trigger="revealed"
+            hx-swap="beforeend"
+            hx-target="#post-container">
+        </div>
+    {% endif %}
+{% else %}
+    <p>No more posts 😴</p>
+{% endif %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naanstop Feed</title>
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 10px;
+        }
+        .post-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        #scroll-trigger {
+            text-align: center;
+            padding: 15px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Naanstop Feed 🫓</h1>
+
+    <div id="post-container">
+        {% include 'home/post_list.html' %}
+    </div>
+
+    <!-- Infinite Scroll Trigger -->
+    <div 
+        id="scroll-trigger"
+        hx-get="{% url 'load_more_posts' %}?offset=5"
+        hx-trigger="revealed"
+        hx-swap="beforeend"
+        hx-target="#post-container">
+    </div>
+
+</body>
+</html>
