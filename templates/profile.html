@@ -44,12 +44,20 @@
 
                         {% if request.user.is_authenticated and request.user == profile.user %}
                         <a style="text-decoration: none;" href="{% url 'editprofile' %}" class="btn profile-edit-btn">Edit Profile</a>
-                        <a style="text-decoration: none;" href="{% url 'sign-out' %}" class="btn profile-edit-btn">Logout</a>
-                        <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
-                        
+                        <!-- FIXED LOGOUT BUTTON (POST) -->
+                        <form action="{% url 'sign-out' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn profile-edit-btn" style="background:none; border:none; padding:0; cursor:pointer;">
+                                Logout
+                            </button>
+                        </form>
+
+                        <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
                         {% endif %}
+
                         <br><br>
+
                         {% if request.user.is_authenticated and request.user != profile.user %}
                             {% if follow_status == True %}
                                 <a href="{% url 'follow' profile.user 0 %}" class="btn profile-edit-btn" style="color: red;">Unfollow</a> <br><br>
@@ -63,14 +71,7 @@
                         {% endif %}
                         <br>
 
-                    
-                    
-                    
-                    
-
                 </div>
-
-                
 
                 <div class="profile-bio">
                     <br>
@@ -92,7 +93,6 @@
                     </div>
                 </div>
 
-
                 <div class="profile-stats">
 
                     <ul>
@@ -101,14 +101,11 @@
                         <li><span class="profile-stat-count">{{following_count}}</span> following</li>
                     </ul>
                     <br>
-                    
                 </div>
 
             </div>
-            <!-- End of profile section -->
 
         </div>
-        <!-- End of container -->
 
     </header>
     
@@ -135,16 +132,9 @@
                 </div></a>
                 {% endfor %}
 
-                
-
-                
-
             </div>
-            <!-- End of gallery -->
-
 
         </div>
-        <!-- End of container -->
 
     </main>
-    {% endblock content %}
+{% endblock content %}
