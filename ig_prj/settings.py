@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'comment',
     'directs',
     'notification',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -149,6 +150,8 @@ LOGOUT_REDIRECT_URL = 'sign-in'
 
 LOGIN_URL = 'sign-in'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
